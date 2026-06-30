@@ -553,19 +553,25 @@ function TestimonialsSection() {
   );
 }
 
+const WORK_PROJECTS = [
+  { category: "youtube", image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=340&fit=crop", duration: "3:28", title: "YouTube Creator Spotlight" },
+  { category: "youtube", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=340&fit=crop", duration: "5:12", title: "Brand Documentary" },
+  { category: "shorts", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=340&fit=crop&crop=face", duration: "0:45", title: "Quick Fashion Reel" },
+  { category: "shorts", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=340&fit=crop&crop=face", duration: "0:32", title: "Product Teaser" },
+  { category: "shorts", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&h=340&fit=crop&crop=face", duration: "0:58", title: "Behind the Scenes" },
+  { category: "saas", image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=340&fit=crop", duration: "2:15", title: "SaaS Product Walkthrough" },
+  { category: "saas", image: "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?w=600&h=340&fit=crop", duration: "1:48", title: "Software Demo" },
+  { category: "ads", image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=340&fit=crop", duration: "0:30", title: "Facebook Ad Creative" },
+  { category: "ads", image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&h=340&fit=crop", duration: "0:25", title: "Instagram VSL" },
+  { category: "ads", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=340&fit=crop", duration: "0:35", title: "YouTube Ad Spot" },
+];
+
 function WorkSection() {
   const [filter, setFilter] = useState("all");
 
-  const projects = [
-    { category: "all", duration: "0:20" },
-    { category: "all", duration: "0:20" },
-    { category: "shorts", duration: "0:20" },
-    { category: "ads", duration: "0:20" },
-  ];
-
   const filtered = filter === "all"
-    ? projects
-    : projects.filter((p) => p.category === filter);
+    ? WORK_PROJECTS
+    : WORK_PROJECTS.filter((p) => p.category === filter);
 
   return (
     <section className="work" id="work">
@@ -576,19 +582,19 @@ function WorkSection() {
         Work
       </h2>
       <div className="work-tabs">
-        {["all", "shorts", "saas", "ads"].map((tab) => (
+        {[
+          { key: "all", label: "All Videos" },
+          { key: "youtube", label: "YouTube Videos" },
+          { key: "shorts", label: "Shorts" },
+          { key: "saas", label: "SAAS Videos" },
+          { key: "ads", label: "Ad Creatives & VSL" },
+        ].map((tab) => (
           <button
-            key={tab}
-            className={`work-tab${filter === tab ? " active" : ""}`}
-            onClick={() => setFilter(tab)}
+            key={tab.key}
+            className={`work-tab${filter === tab.key ? " active" : ""}`}
+            onClick={() => setFilter(tab.key)}
           >
-            {tab === "all"
-              ? "Youtube Videos"
-              : tab === "shorts"
-              ? "Shorts"
-              : tab === "saas"
-              ? "SAAS Videos"
-              : "Ad Creatives & VSL"}
+            {tab.label}
           </button>
         ))}
       </div>
@@ -596,7 +602,7 @@ function WorkSection() {
         <AnimatePresence mode="popLayout">
           {filtered.map((p, i) => (
             <motion.div
-              key={i}
+              key={`${p.category}-${i}`}
               className="work-item"
               layout
               initial={{ opacity: 0, scale: 0.9 }}
@@ -604,10 +610,7 @@ function WorkSection() {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3, delay: i * 0.05 }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1506905927180-6c4c4d9e4a7a?w=600&h=340&fit=crop"
-                alt={`Project ${i + 1}`}
-              />
+              <img src={p.image} alt={p.title} />
               <div className="work-play">
                 <i className="fas fa-play"></i>
               </div>
