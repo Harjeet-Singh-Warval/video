@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chotu Edits | Creative Video Editor & Graphic Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #050505; --bg-secondary: #0a0a0a; --bg-card: #0f0f0f; --bg-card-hover: #141414;
+            --accent-purple: #7c3aed; --accent-purple-light: #8b5cf6; --accent-purple-glow: rgba(124, 58, 237, 0.3);
+            --text-white: #ffffff; --text-gray: #9ca3af; --text-muted: #6b7280;
+            --border-color: #1f1f1f; --border-hover: #2d2d2d;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary); color: var(--text-white); line-height: 1.6; overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-purple); }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 1rem 0; transition: all 0.4s ease;
+        }
+        nav.scrolled { background: rgba(5, 5, 5, 0.95); padding: 0.7rem 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-white); }
+        .logo-icon { width: 40px; height: 40px; position: relative; }
+        .logo-icon svg { width: 100%; height: 100%; }
+        .logo-text { display: flex; flex-direction: column; }
+        .logo-brand { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; line-height: 1; }
+        .logo-tagline { font-size: 0.6rem; color: var(--text-gray); letter-spacing: 0.05em; margin-top: 2px; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.3s ease; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent-purple); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--text-white); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta { background: var(--accent-purple); color: white; padding: 0.6rem 1.4rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: all 0.3s ease; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; }
+        .nav-cta:hover { background: var(--accent-purple-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-white); font-size: 1.5rem; cursor: pointer; }
+
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+        .hero-bg-glow { position: absolute; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(124, 58, 237, 0.08), transparent 70%); top: -200px; left: 50%; transform: translateX(-50%); pointer-events: none; z-index: 0; }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; animation: fadeInUp 1s ease-out; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+        .hero h1 .gradient-text { background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-gray); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; animation: fadeInUp 1s ease-out 0.2s both; }
+        .hero-clients { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 2rem; animation: fadeInUp 1s ease-out 0.4s both; }
+        .avatar-stack { display: flex; }
+        .avatar-stack img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--bg-primary); margin-left: -10px; object-fit: cover; transition: transform 0.3s ease; }
+        .avatar-stack img:first-child { margin-left: 0; }
+        .avatar-stack img:hover { transform: scale(1.1); z-index: 10; }
+        .client-text { text-align: left; font-size: 0.85rem; color: var(--text-gray); }
+        .client-text strong { color: var(--text-white); font-weight: 600; }
+        .client-text .sub { font-size: 0.75rem; color: var(--text-muted); }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; margin-bottom: 3rem; animation: fadeInUp 1s ease-out 0.6s both; }
+        .btn-primary { background: var(--accent-purple); color: white; padding: 0.9rem 1.8rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; border: none; cursor: pointer; position: relative; overflow: hidden; }
+        .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s ease; }
+        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover { background: var(--accent-purple-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4); }
+        .btn-secondary { background: transparent; color: var(--text-white); padding: 0.9rem 1.8rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border-color); cursor: pointer; }
+        .btn-secondary:hover { border-color: var(--accent-purple); color: var(--accent-purple-light); transform: translateY(-2px); }
+
+        /* HERO SHOWCASE */
+        .hero-showcase { position: relative; max-width: 900px; margin: 0 auto; width: 100%; animation: fadeInUp 1s ease-out 0.8s both; }
+        .showcase-card { background: linear-gradient(145deg, #0f0f0f, #1a1a1a); border: 1px solid var(--border-color); border-radius: 24px; padding: 2rem; position: relative; overflow: hidden; }
+        .showcase-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(124, 58, 237, 0.1), transparent 70%); animation: rotate 20s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .showcase-inner { position: relative; z-index: 1; text-align: center; }
+        .showcase-title { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2rem; background: linear-gradient(135deg, #fff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .showcase-video { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 16/9; background: linear-gradient(135deg, #1a0a2e, #0f0f0f); display: flex; align-items: center; justify-content: center; }
+        .showcase-video img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .play-button { position: absolute; width: 70px; height: 70px; background: rgba(255, 255, 255, 0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 40px rgba(124, 58, 237, 0.5); animation: pulse 2s infinite; }
+        .play-button:hover { transform: scale(1.1); box-shadow: 0 0 60px rgba(124, 58, 237, 0.7); }
+        .play-button i { color: var(--accent-purple); font-size: 1.5rem; margin-left: 4px; }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); } 50% { box-shadow: 0 0 0 15px rgba(124, 58, 237, 0); } }
+        .floating-tags { position: absolute; inset: 0; pointer-events: none; }
+        .float-tag { position: absolute; background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(124, 58, 237, 0.3); border-radius: 12px; padding: 0.6rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; backdrop-filter: blur(10px); animation: floatTag 4s ease-in-out infinite; }
+        .float-tag:nth-child(1) { top: 15%; left: 5%; animation-delay: 0s; }
+        .float-tag:nth-child(2) { top: 10%; right: 5%; animation-delay: 1s; }
+        .float-tag:nth-child(3) { bottom: 20%; left: 8%; animation-delay: 2s; }
+        .float-tag:nth-child(4) { bottom: 15%; right: 8%; animation-delay: 3s; }
+        @keyframes floatTag { 0%, 100% { transform: translateY(0) rotate(0deg); } 25% { transform: translateY(-8px) rotate(1deg); } 75% { transform: translateY(8px) rotate(-1deg); } }
+        .tag-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+        .tag-icon.purple { background: rgba(124, 58, 237, 0.2); color: var(--accent-purple-light); }
+        .tag-icon.pink { background: rgba(236, 72, 153, 0.2); color: #ec4899; }
+        .tag-icon.blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .tag-icon.green { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+
+        /* SERVICES MARQUEE */
+        .services-marquee { padding: 4rem 0; overflow: hidden; position: relative; }
+        .marquee-track { display: flex; gap: 1.5rem; animation: marquee 20s linear infinite; width: max-content; }
+        .marquee-track:hover { animation-play-state: paused; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .marquee-item { background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(124, 58, 237, 0.05)); border: 1px solid rgba(124, 58, 237, 0.2); border-radius: 16px; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; white-space: nowrap; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; cursor: pointer; }
+        .marquee-item:hover { background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(124, 58, 237, 0.1)); transform: scale(1.05); border-color: rgba(124, 58, 237, 0.4); }
+        .marquee-item i { font-size: 1.1rem; color: var(--accent-purple-light); }
+
+        /* STATS */
+        .stats-section { text-align: center; padding: 4rem 2rem; position: relative; }
+        .stats-heading { font-size: 1.5rem; font-weight: 700; max-width: 600px; margin: 0 auto 3rem; line-height: 1.4; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; max-width: 800px; margin: 0 auto; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 3.5rem; font-weight: 900; background: linear-gradient(135deg, var(--text-white), var(--accent-purple-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.95rem; color: var(--text-gray); font-weight: 500; }
+
+        /* TESTIMONIALS */
+        .testimonials { padding: 6rem 2rem; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-purple-light); margin-bottom: 1rem; font-weight: 600; }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+        .section-title .light { color: var(--text-gray); font-weight: 400; }
+        .testimonial-slider { position: relative; margin-top: 3rem; }
+        .testimonial-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; padding: 3rem; max-width: 600px; margin: 0 auto; position: relative; transition: all 0.5s ease; }
+        .testimonial-card:hover { border-color: var(--accent-purple); box-shadow: 0 0 40px rgba(124, 58, 237, 0.1); }
+        .testimonial-video { width: 200px; height: 260px; border-radius: 16px; overflow: hidden; margin: 0 auto 2rem; position: relative; }
+        .testimonial-video img { width: 100%; height: 100%; object-fit: cover; }
+        .testimonial-quote { font-size: 1.1rem; line-height: 1.7; color: var(--text-light); margin-bottom: 2rem; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+        .testimonial-author img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-purple); }
+        .author-info { text-align: left; }
+        .author-name { font-weight: 700; font-size: 1rem; }
+        .author-role { font-size: 0.85rem; color: var(--text-gray); }
+        .slider-nav { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
+        .slider-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-white); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; }
+        .slider-btn:hover { background: var(--accent-purple); border-color: var(--accent-purple); transform: scale(1.1); }
+        .slider-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-color); cursor: pointer; transition: all 0.3s ease; }
+        .dot.active { background: var(--accent-purple); width: 24px; border-radius: 4px; }
+
+        /* WORK */
+        .work { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .work-tabs { display: flex; gap: 0.5rem; justify-content: center; margin: 2rem 0 3rem; flex-wrap: wrap; }
+        .work-tab { padding: 0.6rem 1.2rem; border-radius: 50px; background: transparent; border: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
+        .work-tab.active, .work-tab:hover { background: var(--accent-purple); border-color: var(--accent-purple); color: white; }
+        .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .work-item { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 16/9; cursor: pointer; }
+        .work-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.3s ease; }
+        .work-item:hover img { transform: scale(1.08); filter: brightness(0.7); }
+        .work-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 60px; height: 60px; background: rgba(255, 255, 255, 0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease; }
+        .work-item:hover .work-play { transform: translate(-50%, -50%) scale(1); }
+        .work-play i { color: var(--accent-purple); font-size: 1.2rem; margin-left: 3px; }
+        .work-duration { position: absolute; bottom: 1rem; right: 1rem; background: rgba(0, 0, 0, 0.7); padding: 0.3rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+
+        /* COMPARISON */
+        .comparison { padding: 6rem 2rem; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .comparison-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; text-align: left; }
+        .comparison-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; padding: 2.5rem; position: relative; transition: all 0.4s ease; }
+        .comparison-card.editgen { border-color: rgba(124, 58, 237, 0.3); background: linear-gradient(145deg, var(--bg-card), rgba(124, 58, 237, 0.05)); }
+        .comparison-card.editgen::before { content: ''; position: absolute; inset: -1px; border-radius: 24px; padding: 1px; background: linear-gradient(135deg, var(--accent-purple), transparent); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) mask; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) mask; -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+        .comparison-card:hover { transform: translateY(-5px); border-color: var(--accent-purple); }
+        .comp-logo { margin-bottom: 1.5rem; }
+        .comp-logo svg { height: 40px; width: auto; }
+        .comp-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .comp-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        .comp-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
+        .comp-list li i { margin-top: 3px; font-size: 0.8rem; flex-shrink: 0; }
+        .comp-list li .check { color: #22c55e; }
+        .comp-list li .cross { color: #ef4444; }
+        .extra-mile { margin-top: 1.5rem; padding: 1.5rem; background: rgba(124, 58, 237, 0.08); border-radius: 16px; border: 1px solid rgba(124, 58, 237, 0.15); }
+        .extra-mile h4 { font-size: 0.95rem; margin-bottom: 1rem; color: var(--accent-purple-light); }
+        .extra-mile ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .extra-mile li { font-size: 0.85rem; color: var(--text-gray); display: flex; align-items: center; gap: 0.5rem; }
+        .extra-mile li i { color: #22c55e; font-size: 0.75rem; }
+
+        /* PROCESS */
+        .process { padding: 6rem 2rem; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .process-timeline { position: relative; margin-top: 4rem; }
+        .process-timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, var(--accent-purple), transparent); top: 0; }
+        .process-step { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem; position: relative; }
+        .process-step:nth-child(even) .step-content { order: 2; }
+        .process-step:nth-child(even) .step-visual { order: 1; }
+        .step-number { position: absolute; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; background: var(--bg-card); border: 2px solid var(--accent-purple); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; z-index: 10; box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); }
+        .step-badge { display: inline-block; background: var(--accent-purple); color: white; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+        .step-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .step-desc { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
+        .step-visual { position: relative; }
+        .step-visual img { width: 100%; border-radius: 16px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); }
+        .niche-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 1rem; }
+        .niche-tag { background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.2); padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 500; color: var(--accent-purple-light); transition: all 0.3s ease; }
+        .niche-tag:hover { background: rgba(124, 58, 237, 0.2); transform: translateY(-2px); }
+
+        /* SERVICES GRID */
+        .services-grid-section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .service-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 2.5rem 2rem; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-purple), var(--accent-purple-light)); transform: scaleX(0); transition: transform 0.4s ease; }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card:hover { transform: translateY(-8px); border-color: var(--accent-purple); box-shadow: 0 20px 40px rgba(124, 58, 237, 0.1); }
+        .service-icon-wrap { width: 60px; height: 60px; border-radius: 16px; background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124, 58, 237, 0.15); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.4rem; color: var(--accent-purple-light); transition: all 0.3s ease; }
+        .service-card:hover .service-icon-wrap { background: rgba(124, 58, 237, 0.15); transform: scale(1.1); }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; font-weight: 700; }
+        .service-card p { font-size: 0.9rem; color: var(--text-gray); line-height: 1.6; }
+
+        /* CREATOR RESULTS */
+        .creator-results { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .creators-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .creator-card { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+        .creator-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .creator-card:hover img { transform: scale(1.05); }
+        .creator-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; transition: all 0.3s ease; }
+        .creator-card:hover .creator-overlay { background: linear-gradient(to top, rgba(124, 58, 237, 0.4) 0%, rgba(0,0,0,0.3) 50%, transparent 100%); }
+        .creator-name { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .creator-niche { font-size: 0.85rem; color: var(--text-gray); margin-bottom: 0.75rem; }
+        .creator-stats { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .creator-stat { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+
+        /* CONTACT / BOOKING */
+        .booking { padding: 6rem 2rem; max-width: 800px; margin: 0 auto; text-align: center; }
+        .booking-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; padding: 3rem; margin-top: 2rem; position: relative; overflow: hidden; }
+        .booking-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(124, 58, 237, 0.05), transparent 70%); animation: rotate 25s linear infinite; }
+        .contact-info { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1.25rem; align-items: center; }
+        .contact-item { display: flex; align-items: center; gap: 1rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 1rem 1.5rem; width: 100%; max-width: 400px; transition: all 0.3s ease; text-decoration: none; color: var(--text-white); }
+        .contact-item:hover { border-color: var(--accent-purple); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(124, 58, 237, 0.15); }
+        .contact-item-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(124, 58, 237, 0.1); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--accent-purple-light); flex-shrink: 0; }
+        .contact-item-text { text-align: left; }
+        .contact-item-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .contact-item-value { font-weight: 600; font-size: 0.95rem; }
+
+        /* FAQ */
+        .faq { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; text-align: center; }
+        .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 3rem; text-align: left; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; transition: all 0.3s ease; }
+        .faq-item:hover { border-color: var(--border-hover); }
+        .faq-question { padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; }
+        .faq-question:hover { color: var(--accent-purple-light); }
+        .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: rgba(124, 58, 237, 0.1); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent-purple-light); transition: all 0.3s ease; flex-shrink: 0; margin-left: 1rem; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); background: var(--accent-purple); color: white; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; padding: 0 1.5rem; }
+        .faq-item.active .faq-answer { max-height: 200px; padding: 0 1.5rem 1.25rem; }
+        .faq-answer p { color: var(--text-gray); font-size: 0.9rem; line-height: 1.6; }
+
+        /* FOOTER */
+        footer { border-top: 1px solid var(--border-color); padding: 4rem 2rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1.5fr; gap: 4rem; margin-bottom: 3rem; align-items: start; }
+        .footer-brand { max-width: 400px; }
+        .footer-brand .logo { margin-bottom: 1rem; }
+        .footer-brand p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.7; }
+        .footer-cta { text-align: right; }
+        .footer-cta h3 { font-size: 1.5rem; margin-bottom: 1.5rem; font-weight: 700; }
+        .social-links { display: flex; gap: 0.75rem; justify-content: flex-end; }
+        .social-links a { width: 44px; height: 44px; border-radius: 12px; background: var(--bg-secondary); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-gray); text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem; }
+        .social-links a:hover { background: var(--accent-purple); border-color: var(--accent-purple); color: white; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3); }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.85rem; flex-wrap: wrap; gap: 1rem; }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--accent-purple-light); }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animate-on-scroll { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; } .delay-5 { transition-delay: 0.5s; } .delay-6 { transition-delay: 0.6s; }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg-primary); flex-direction: column; padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--border-color); }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .comparison-cards { grid-template-columns: 1fr; }
+            .process-step { grid-template-columns: 1fr; gap: 2rem; }
+            .process-step:nth-child(even) .step-content, .process-step:nth-child(even) .step-visual { order: unset; }
+            .process-timeline::before { display: none; }
+            .step-number { position: relative; left: auto; transform: none; margin-bottom: 1rem; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .creators-grid { grid-template-columns: 1fr; }
+            .work-grid { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-cta { text-align: center; }
+            .social-links { justify-content: center; }
+            .floating-tags { display: none; }
+        }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .services-grid { grid-template-columns: 1fr; }
+            .testimonial-card { padding: 2rem 1.5rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="16" height="10" rx="2" fill="white" opacity="0.9"/>
+                        <rect x="22" y="2" width="16" height="10" rx="2" fill="white" opacity="0.7"/>
+                        <rect x="2" y="16" width="10" height="10" rx="2" fill="white" opacity="0.8"/>
+                        <rect x="16" y="16" width="10" height="10" rx="2" fill="white" opacity="0.6"/>
+                        <rect x="2" y="30" width="16" height="8" rx="2" fill="white" opacity="0.7"/>
+                        <rect x="22" y="30" width="16" height="8" rx="2" fill="white" opacity="0.9"/>
+                        <line x1="20" y1="2" x2="20" y2="38" stroke="white" stroke-width="1.5" stroke-dasharray="2 2"/>
+                        <line x1="18" y1="2" x2="18" y2="38" stroke="white" stroke-width="0.5" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-brand">CHOTU</span>
+                    <span class="logo-tagline">Creative Video Editor & Designer</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Let's Talk</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-glow"></div>
+        <div class="hero-content">
+            <h1>
+                Creative Video Editor &<br>
+                <span class="gradient-text">Graphic Designer</span>
+            </h1>
+            <p class="hero-subtitle">
+                <strong>5+ Years of Professional Experience</strong> — Crafting scroll-stopping videos and visuals that build brands, captivate audiences, and drive real results.
+            </p>
+            <div class="hero-clients">
+                <div class="avatar-stack">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Client">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" alt="Client">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="Client">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Client">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face" alt="Client">
+                </div>
+                <div class="client-text">
+                    <strong>Trusted by 150+</strong> Visionary Brands & Creators.<br>
+                    <span class="sub">The results that define our reputation</span>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a href="#work" class="btn-primary">
+                    <i class="fas fa-play"></i>
+                    Watch Demo
+                </a>
+                <a href="#contact" class="btn-secondary">
+                    Get In Touch
+                    <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-showcase">
+            <div class="showcase-card">
+                <div class="showcase-inner">
+                    <div class="showcase-title">Content That Grabs Attention & Drives Sales</div>
+                    <div class="showcase-video">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b869070f9279?w=900&h=500&fit=crop" alt="Video Editor">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="floating-tags">
+                            <div class="float-tag">
+                                <div class="tag-icon purple"><i class="fas fa-bullseye"></i></div>
+                                <span>Strategic Editing</span>
+                            </div>
+                            <div class="float-tag">
+                                <div class="tag-icon pink"><i class="fas fa-bolt"></i></div>
+                                <span>Scroll-Stopping Visuals</span>
+                            </div>
+                            <div class="float-tag">
+                                <div class="tag-icon blue"><i class="fas fa-gem"></i></div>
+                                <span>Clean & Premium Finish</span>
+                            </div>
+                            <div class="float-tag">
+                                <div class="tag-icon green"><i class="fas fa-stopwatch"></i></div>
+                                <span>High Retention Flow</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Marquee -->
+    <section class="services-marquee">
+        <div class="marquee-track">
+            <div class="marquee-item"><i class="fab fa-youtube"></i> Youtube Videos</div>
+            <div class="marquee-item"><i class="fas fa-ad"></i> Ad Creatives & VSL</div>
+            <div class="marquee-item"><i class="fas fa-microphone"></i> Podcast Editing</div>
+            <div class="marquee-item"><i class="fas fa-mobile-alt"></i> Short Form Content</div>
+            <div class="marquee-item"><i class="fas fa-paint-brush"></i> Graphic Design</div>
+            <div class="marquee-item"><i class="fab fa-youtube"></i> Youtube Videos</div>
+            <div class="marquee-item"><i class="fas fa-ad"></i> Ad Creatives & VSL</div>
+            <div class="marquee-item"><i class="fas fa-microphone"></i> Podcast Editing</div>
+            <div class="marquee-item"><i class="fas fa-mobile-alt"></i> Short Form Content</div>
+            <div class="marquee-item"><i class="fas fa-paint-brush"></i> Graphic Design</div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <h2 class="stats-heading">Tired of boring video content that don't stand out? It's time to upgrade the game with us!</h2>
+        <div class="stats-grid">
+            <div class="stat-item animate-on-scroll">
+                <div class="stat-number" data-target="200">0%</div>
+                <div class="stat-label">Engagement Surge</div>
+            </div>
+            <div class="stat-item animate-on-scroll delay-1">
+                <div class="stat-number" data-target="5">0x</div>
+                <div class="stat-label">Organic Reach</div>
+            </div>
+            <div class="stat-item animate-on-scroll delay-2">
+                <div class="stat-number" data-target="50">0%</div>
+                <div class="stat-label">Higher Conversion</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-label">Client Testimonials</div>
+        <h2 class="section-title">
+            <span class="light">See What Our</span><br>
+            Customers Have To Say
+        </h2>
+        <div class="testimonial-slider">
+            <div class="testimonial-card" id="testimonialCard">
+                <div class="testimonial-video">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face" alt="Client" id="testimonialImg">
+                </div>
+                <p class="testimonial-quote" id="testimonialQuote">
+                    "Exceptional speed and quality. Chotu delivers on point and without the hassle. Great work, mate!"
+                </p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Client" id="authorImg">
+                    <div class="author-info">
+                        <div class="author-name" id="authorName">Edgar Marquez</div>
+                        <div class="author-role" id="authorRole">High-Ticket Sales</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="slider-btn" onclick="prevTestimonial()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn" onclick="nextTestimonial()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="slider-dots">
+                <div class="dot active" onclick="goToTestimonial(0)"></div>
+                <div class="dot" onclick="goToTestimonial(1)"></div>
+                <div class="dot" onclick="goToTestimonial(2)"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section class="work" id="work">
+        <div class="section-label">Work</div>
+        <h2 class="section-title">
+            <span class="light">Check Out Our</span><br>
+            Work
+        </h2>
+        <div class="work-tabs">
+            <button class="work-tab active" onclick="filterWork(this, 'all')">Youtube Videos</button>
+            <button class="work-tab" onclick="filterWork(this, 'shorts')">Shorts</button>
+            <button class="work-tab" onclick="filterWork(this, 'saas')">SAAS Videos</button>
+            <button class="work-tab" onclick="filterWork(this, 'ads')">Ad Creatives & VSL</button>
+        </div>
+        <div class="work-grid">
+            <div class="work-item animate-on-scroll" data-category="all">
+                <img src="https://images.unsplash.com/photo-1506905927180-6c4c4d9e4a7a?w=600&h=340&fit=crop" alt="Project 1">
+                <div class="work-play"><i class="fas fa-play"></i></div>
+                <div class="work-duration">0:20</div>
+            </div>
+            <div class="work-item animate-on-scroll delay-1" data-category="all">
+                <img src="https://images.unsplash.com/photo-1506905927180-6c4c4d9e4a7a?w=600&h=340&fit=crop" alt="Project 2">
+                <div class="work-play"><i class="fas fa-play"></i></div>
+                <div class="work-duration">0:20</div>
+            </div>
+            <div class="work-item animate-on-scroll delay-2" data-category="shorts">
+                <img src="https://images.unsplash.com/photo-1506905927180-6c4c4d9e4a7a?w=600&h=340&fit=crop" alt="Project 3">
+                <div class="work-play"><i class="fas fa-play"></i></div>
+                <div class="work-duration">0:20</div>
+            </div>
+            <div class="work-item animate-on-scroll delay-3" data-category="ads">
+                <img src="https://images.unsplash.com/photo-1506905927180-6c4c4d9e4a7a?w=600&h=340&fit=crop" alt="Project 4">
+                <div class="work-play"><i class="fas fa-play"></i></div>
+                <div class="work-duration">0:20</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agency Comparison -->
+    <section class="comparison" id="comparison">
+        <div class="section-label">Why Choose Me</div>
+        <h2 class="section-title">
+            <span class="light">See What Makes</span><br>
+            Us Different
+        </h2>
+        <div class="comparison-cards">
+            <div class="comparison-card editgen animate-on-scroll">
+                <div class="comp-logo">
+                    <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="16" height="10" rx="2" fill="white" opacity="0.9"/>
+                        <rect x="22" y="2" width="16" height="10" rx="2" fill="white" opacity="0.7"/>
+                        <rect x="2" y="16" width="10" height="10" rx="2" fill="white" opacity="0.8"/>
+                        <rect x="16" y="16" width="10" height="10" rx="2" fill="white" opacity="0.6"/>
+                        <rect x="2" y="30" width="16" height="8" rx="2" fill="white" opacity="0.7"/>
+                        <rect x="22" y="30" width="16" height="8" rx="2" fill="white" opacity="0.9"/>
+                        <line x1="20" y1="2" x2="20" y2="38" stroke="white" stroke-width="1.5" stroke-dasharray="2 2"/>
+                        <text x="45" y="18" fill="white" font-family="Inter" font-weight="800" font-size="14">CHOTU</text>
+                        <text x="45" y="32" fill="#9ca3af" font-family="Inter" font-weight="400" font-size="8">Creative Video & Design</text>
+                    </svg>
+                </div>
+                <ul class="comp-list">
+                    <li><i class="fas fa-check check"></i> 5+ Years of Professional Experience</li>
+                    <li><i class="fas fa-check check"></i> Lightning-Fast Delivery Without Compromise</li>
+                    <li><i class="fas fa-check check"></i> Unlimited Edits Until It's Perfect</li>
+                    <li><i class="fas fa-check check"></i> Video Editing + Graphic Design Under One Roof</li>
+                    <li><i class="fas fa-check check"></i> Obsessed with Results & Scalable Growth</li>
+                    <li><i class="fas fa-check check"></i> Around-the-Clock Support Whenever You Need a Win</li>
+                </ul>
+                <div class="extra-mile">
+                    <h4>The 'Extra Mile' Package:</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Free 60-Minute 1-on-1 Growth Deep-Dive</li>
+                        <li><i class="fas fa-check"></i> Access to our Private Resource Library</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="comparison-card animate-on-scroll delay-2">
+                <div class="comp-title">The 'Typical' Freelancer</div>
+                <ul class="comp-list">
+                    <li><i class="fas fa-times cross"></i> Flaky freelancers and missed deadlines</li>
+                    <li><i class="fas fa-times cross"></i> Pretty designs that don't actually sell</li>
+                    <li><i class="fas fa-times cross"></i> Nickel-and-diming you for every minor change</li>
+                    <li><i class="fas fa-times cross"></i> Throwing darts in the dark without a plan</li>
+                    <li><i class="fas fa-times cross"></i> Ghosting you when you need answers most</li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="#contact" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
+                Book 15-Min Call
+                <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="section-label">Our Process</div>
+        <h2 class="section-title">
+            <span class="light">Our Strategy To Get</span><br>
+            You leads with content
+        </h2>
+        <div class="process-timeline">
+            <div class="process-step animate-on-scroll">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-badge">Creativity</div>
+                    <h3 class="step-title">Content Analysis</h3>
+                    <p class="step-desc">Spotting strengths, fixing flaws, and aligning your content with audience expectations.</p>
+                </div>
+                <div class="step-visual">
+                    <div class="niche-tags">
+                        <span class="niche-tag">Coaches</span>
+                        <span class="niche-tag">E-commerce</span>
+                        <span class="niche-tag">Personal Brand</span>
+                        <span class="niche-tag">Fashion</span>
+                    </div>
+                </div>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-badge">Editing</div>
+                    <h3 class="step-title">Editing the Video</h3>
+                    <p class="step-desc">Using cutting-edge motion graphics, we create premium videos that make your message unforgettable.</p>
+                </div>
+                <div class="step-visual">
+                    <div style="background: linear-gradient(135deg, #1a1a2e, #0f0f0f); border-radius: 16px; padding: 2rem; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                        <div style="width: 50px; height: 50px; background: #00005b; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #9999ff; font-size: 1.2rem;">Pr</div>
+                        <div style="width: 50px; height: 50px; background: #1a1a1a; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #9999ff; font-size: 1.2rem;">Ae</div>
+                        <div style="width: 100%; height: 60px; background: #0a0a0a; border-radius: 8px; display: flex; align-items: center; padding: 0 1rem; gap: 0.5rem;">
+                            <div style="width: 8px; height: 8px; border-radius: 50%; background: #ef4444;"></div>
+                            <div style="width: 8px; height: 8px; border-radius: 50%; background: #f59e0b;"></div>
+                            <div style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e;"></div>
+                            <div style="flex: 1; height: 4px; background: #333; border-radius: 2px; margin-left: 1rem; position: relative;">
+                                <div style="position: absolute; left: 0; width: 60%; height: 100%; background: linear-gradient(90deg, #7c3aed, #a78bfa); border-radius: 2px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-badge">Thumbnail</div>
+                    <h3 class="step-title">Creating Thumbnail</h3>
+                    <p class="step-desc">We study top-performing thumbnails in your niche and replicate proven results.</p>
+                </div>
+                <div class="step-visual">
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <div style="width: 120px; height: 80px; background: linear-gradient(135deg, #ef4444, #b91c1c); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.7rem; color: white; transform: rotate(-5deg);">CLICKBAIT THUMBNAIL</div>
+                        <div style="width: 120px; height: 80px; background: linear-gradient(135deg, #22c55e, #15803d); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.7rem; color: white; transform: rotate(5deg);">STAYING AHEAD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="#contact" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
+                Book A 30-Min Call
+                <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-grid-section" id="services">
+        <div class="section-label">Services</div>
+        <h2 class="section-title">
+            <span class="light">Video Formats Built For</span><br>
+            every stage of growth
+        </h2>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon-wrap"><i class="fas fa-bullhorn"></i></div>
+                <h3>Creatives & VSLs</h3>
+                <p>High-response edits designed to stop the scroll and convert fast.</p>
+            </div>
+            <div class="service-card animate-on-scroll delay-1">
+                <div class="service-icon-wrap"><i class="fab fa-youtube"></i></div>
+                <h3>Youtube Videos</h3>
+                <p>Long-form storytelling and channel content built to hold attention.</p>
+            </div>
+            <div class="service-card animate-on-scroll delay-2">
+                <div class="service-icon-wrap"><i class="fas fa-desktop"></i></div>
+                <h3>Demo Videos</h3>
+                <p>Product walkthroughs that make your offer clear, credible, and easy to trust.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon-wrap"><i class="fas fa-cube"></i></div>
+                <h3>SAAS Videos</h3>
+                <p>Feature-led product videos that explain value quickly and drive action.</p>
+            </div>
+            <div class="service-card animate-on-scroll delay-1">
+                <div class="service-icon-wrap"><i class="fas fa-podcast"></i></div>
+                <h3>Podcasts</h3>
+                <p>Conversation-first edits with polished audio and clip-ready social cutdowns.</p>
+            </div>
+            <div class="service-card animate-on-scroll delay-2">
+                <div class="service-icon-wrap"><i class="fas fa-rocket"></i></div>
+                <h3>Launch Videos</h3>
+                <p>High-energy campaign assets built to create momentum around every release.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon-wrap"><i class="fas fa-paint-brush"></i></div>
+                <h3>Graphic Design</h3>
+                <p>Brand visuals, thumbnails, social graphics — professional design that stands out.</p>
+            </div>
+            <div class="service-card animate-on-scroll delay-1">
+                <div class="service-icon-wrap"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Short Form Content</h3>
+                <p>Reels, TikToks, and shorts optimized for viral reach and engagement.</p>
+            </div>
+            <div class="service-card animate-on-scroll delay-2">
+                <div class="service-icon-wrap"><i class="fas fa-edit"></i></div>
+                <h3>Full Edit Suite</h3>
+                <p>End-to-end post production from raw footage to polished final cut.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creator Results -->
+    <section class="creator-results" id="creators">
+        <div class="section-label">Creator Results</div>
+        <h2 class="section-title">
+            <span class="light">Built To Scale</span><br>
+            Personal Brands
+        </h2>
+        <div class="creators-grid">
+            <div class="creator-card animate-on-scroll">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=530&fit=crop&crop=face" alt="Creator">
+                <div class="creator-overlay">
+                    <div class="creator-name">Lucas Silva</div>
+                    <div class="creator-niche">Agency niche</div>
+                    <div class="creator-stats">
+                        <span class="creator-stat">Generated 750k+ Views</span>
+                        <span class="creator-stat">5k+ Leads</span>
+                    </div>
+                </div>
+            </div>
+            <div class="creator-card animate-on-scroll delay-1">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=530&fit=crop&crop=face" alt="Creator">
+                <div class="creator-overlay">
+                    <div class="creator-name">Zoe Carter</div>
+                    <div class="creator-niche">Art & Design niche</div>
+                    <div class="creator-stats">
+                        <span class="creator-stat">Generated 1.8M+ Views</span>
+                        <span class="creator-stat">22k+ Followers</span>
+                    </div>
+                </div>
+            </div>
+            <div class="creator-card animate-on-scroll delay-2">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=530&fit=crop&crop=face" alt="Creator">
+                <div class="creator-overlay">
+                    <div class="creator-name">Marcus Chen</div>
+                    <div class="creator-niche">Tech & SaaS niche</div>
+                    <div class="creator-stats">
+                        <span class="creator-stat">Generated 2M+ Views</span>
+                        <span class="creator-stat">15k+ Subscribers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Booking Section -->
+    <section class="booking" id="contact">
+        <div class="section-label">Work With Me</div>
+        <h2 class="section-title">
+            <span class="light">Let's Level Up</span><br>
+            Your Brand!
+        </h2>
+        <div class="booking-card">
+            <div class="contact-info">
+                <i class="fas fa-calendar-check" style="font-size: 3rem; color: var(--accent-purple); margin-bottom: 0.5rem;"></i>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Get In Touch</h3>
+                <p style="color: var(--text-gray); margin-bottom: 1rem;">Reach out directly via email, WhatsApp, or Instagram</p>
+
+                <a href="mailto:mdchotu2275@gmail.com" class="contact-item">
+                    <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-item-text">
+                        <div class="contact-item-label">Email</div>
+                        <div class="contact-item-value">mdchotu2275@gmail.com</div>
+                    </div>
+                </a>
+
+                <a href="https://wa.me/919934916135" target="_blank" class="contact-item">
+                    <div class="contact-item-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="contact-item-text">
+                        <div class="contact-item-label">WhatsApp</div>
+                        <div class="contact-item-value">+91 9934916135</div>
+                    </div>
+                </a>
+
+                <a href="https://www.instagram.com/cho2_rio" target="_blank" class="contact-item">
+                    <div class="contact-item-icon"><i class="fab fa-instagram"></i></div>
+                    <div class="contact-item-text">
+                        <div class="contact-item-label">Instagram</div>
+                        <div class="contact-item-value">@cho2_rio</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">
+            <span class="light">Questions You May</span><br>
+            ask
+        </h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What if I don't like the first edit?</span>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer unlimited revisions until you're 100% satisfied. Our process is designed to get your vision right from the start, but we'll keep refining until it's perfect.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What if I need ongoing videos every week?</span>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer flexible subscription plans for creators who need consistent content. Our team can handle multiple videos per week with dedicated turnaround times.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Do I own the rights to my videos?</span>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! Once the project is complete and paid for, you own 100% of the rights to your content. Use it however you want, wherever you want.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How do revisions work?</span>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Simply share your feedback via our project management tool. We typically turn around revisions within 24-48 hours, depending on complexity.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can you match a specific style?</span>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We can match any style you reference. Just share examples of creators or brands you admire, and our team will replicate that aesthetic.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What's included in your packages?</span>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <p>All packages include editing, color grading, sound design, motion graphics, and unlimited revisions. Premium packages add strategy calls and thumbnail design.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Do you work with international clients?</span>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We work with clients globally. Our team operates across multiple time zones to ensure smooth communication and delivery.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Do you provide refunds?</span>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer a satisfaction guarantee. If we can't deliver what was agreed upon, we'll provide a full refund. Your investment is protected.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="16" height="10" rx="2" fill="white" opacity="0.9"/>
+                            <rect x="22" y="2" width="16" height="10" rx="2" fill="white" opacity="0.7"/>
+                            <rect x="2" y="16" width="10" height="10" rx="2" fill="white" opacity="0.8"/>
+                            <rect x="16" y="16" width="10" height="10" rx="2" fill="white" opacity="0.6"/>
+                            <rect x="2" y="30" width="16" height="8" rx="2" fill="white" opacity="0.7"/>
+                            <rect x="22" y="30" width="16" height="8" rx="2" fill="white" opacity="0.9"/>
+                            <line x1="20" y1="2" x2="20" y2="38" stroke="white" stroke-width="1.5" stroke-dasharray="2 2"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-brand">CHOTU</span>
+                        <span class="logo-tagline">Creative Video Editor & Designer</span>
+                    </div>
+                </a>
+                <p>5+ years crafting scroll-stopping videos and brand visuals. Strategic creative, premium edits, and graphic design — all under one roof.</p>
+            </div>
+            <div class="footer-cta">
+                <h3>Build a sharper digital presence.</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/cho2_rio" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919934916135" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:mdchotu2275@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Chotu Edits | All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter Animation for Stats
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target.querySelector('.stat-number');
+                    if (counter && !counter.classList.contains('counted')) {
+                        counter.classList.add('counted');
+                        const target = parseInt(counter.dataset.target);
+                        const suffix = counter.textContent.replace(/[0-9]/g, '');
+                        let current = 0;
+                        const increment = target / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target + suffix;
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.floor(current) + suffix;
+                            }
+                        }, 30);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-item').forEach(item => {
+            statsObserver.observe(item);
+        });
+
+        // Testimonial Slider
+        const testimonials = [
+            {
+                quote: "Exceptional speed and quality. Chotu delivers on point and without the hassle. Great work, mate!",
+                name: "Edgar Marquez",
+                role: "High-Ticket Sales",
+                img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face"
+            },
+            {
+                quote: "Highly responsive and accommodating. He ensures every edit is perfect. Great work!",
+                name: "Dr. Arryn Gamble",
+                role: "Neuro PT | Online Coach",
+                img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop&crop=face"
+            },
+            {
+                quote: "I can always count on Chotu for good quality video editing. Highly recommended!",
+                name: "Michael Drennon",
+                role: "Founder/CEO Marketing Media AI",
+                img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&crop=face"
+            }
+        ];
+
+        let currentTestimonial = 0;
+
+        function updateTestimonial(index) {
+            const card = document.getElementById('testimonialCard');
+            const t = testimonials[index];
+
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                document.getElementById('testimonialImg').src = t.img;
+                document.getElementById('testimonialQuote').textContent = '"' + t.quote + '"';
+                document.getElementById('authorImg').src = t.img;
+                document.getElementById('authorName').textContent = t.name;
+                document.getElementById('authorRole').textContent = t.role;
+
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 300);
+
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            updateTestimonial(currentTestimonial);
+        }
+
+        function prevTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            updateTestimonial(currentTestimonial);
+        }
+
+        function goToTestimonial(index) {
+            currentTestimonial = index;
+            updateTestimonial(index);
+        }
+
+        // Auto-slide testimonials
+        setInterval(nextTestimonial, 5000);
+
+        // Work Tabs Filter
+        function filterWork(btn, category) {
+            document.querySelectorAll('.work-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.work-item').forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => item.style.opacity = '1', 10);
+                } else {
+                    item.style.opacity = '0';
+                    setTimeout(() => item.style.display = 'none', 300);
+                }
+            });
+        }
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Parallax effect for hero glow
+        window.addEventListener('scroll', () => {
+            const glow = document.querySelector('.hero-bg-glow');
+            if (glow) {
+                const scrolled = window.pageYOffset;
+                glow.style.transform = `translateX(-50%) translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
